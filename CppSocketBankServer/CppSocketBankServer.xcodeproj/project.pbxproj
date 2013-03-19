@@ -1,0 +1,276 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BA13259616DE37D7008BC49B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA13259516DE37D7008BC49B /* main.cpp */; };
+		BA13259816DE37D7008BC49B /* CppSocketBankServer.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = BA13259716DE37D7008BC49B /* CppSocketBankServer.1 */; };
+		BA1325A016DE37F3008BC49B /* Account.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA13259E16DE37F3008BC49B /* Account.cpp */; };
+		BA1325A416DE5111008BC49B /* Bank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA1325A216DE5111008BC49B /* Bank.cpp */; };
+		BA1325A716DE5C6D008BC49B /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA1325A516DE5C6D008BC49B /* Server.cpp */; };
+		BA1325AA16DE5EFB008BC49B /* RequstHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA1325A816DE5EFB008BC49B /* RequstHandler.cpp */; };
+		BA3E8FF516DEC1E100C68E09 /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3E8FF416DEC1E100C68E09 /* libboost_system.dylib */; };
+		BA3E8FF716DECBB200C68E09 /* libboost_thread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3E8FF616DECBB200C68E09 /* libboost_thread.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BA13259016DE37D7008BC49B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				BA13259816DE37D7008BC49B /* CppSocketBankServer.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		BA13259216DE37D7008BC49B /* CppSocketBankServer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CppSocketBankServer; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA13259516DE37D7008BC49B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		BA13259716DE37D7008BC49B /* CppSocketBankServer.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = CppSocketBankServer.1; sourceTree = "<group>"; };
+		BA13259E16DE37F3008BC49B /* Account.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Account.cpp; path = classes/Account.cpp; sourceTree = "<group>"; };
+		BA13259F16DE37F3008BC49B /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Account.h; path = classes/Account.h; sourceTree = "<group>"; };
+		BA1325A216DE5111008BC49B /* Bank.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Bank.cpp; path = classes/Bank.cpp; sourceTree = "<group>"; };
+		BA1325A316DE5111008BC49B /* Bank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bank.h; path = classes/Bank.h; sourceTree = "<group>"; };
+		BA1325A516DE5C6D008BC49B /* Server.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Server.cpp; path = classes/Server.cpp; sourceTree = "<group>"; };
+		BA1325A616DE5C6D008BC49B /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Server.h; path = classes/Server.h; sourceTree = "<group>"; };
+		BA1325A816DE5EFB008BC49B /* RequstHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RequstHandler.cpp; path = classes/RequstHandler.cpp; sourceTree = "<group>"; };
+		BA1325A916DE5EFB008BC49B /* RequstHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RequstHandler.h; path = classes/RequstHandler.h; sourceTree = "<group>"; };
+		BA3E8FF416DEC1E100C68E09 /* libboost_system.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_system.dylib; path = ../../../../../../../usr/local/boost_1_53_0/stage/lib/libboost_system.dylib; sourceTree = "<group>"; };
+		BA3E8FF616DECBB200C68E09 /* libboost_thread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_thread.dylib; path = ../../../../../../../usr/local/boost_1_53_0/stage/lib/libboost_thread.dylib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BA13258F16DE37D7008BC49B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA3E8FF516DEC1E100C68E09 /* libboost_system.dylib in Frameworks */,
+				BA3E8FF716DECBB200C68E09 /* libboost_thread.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BA13258916DE37D7008BC49B = {
+			isa = PBXGroup;
+			children = (
+				BA3E8FF616DECBB200C68E09 /* libboost_thread.dylib */,
+				BA3E8FF416DEC1E100C68E09 /* libboost_system.dylib */,
+				BA1325A116DE380B008BC49B /* Classes */,
+				BA13259416DE37D7008BC49B /* CppSocketBankServer */,
+				BA13259316DE37D7008BC49B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BA13259316DE37D7008BC49B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BA13259216DE37D7008BC49B /* CppSocketBankServer */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BA13259416DE37D7008BC49B /* CppSocketBankServer */ = {
+			isa = PBXGroup;
+			children = (
+				BA13259516DE37D7008BC49B /* main.cpp */,
+				BA13259716DE37D7008BC49B /* CppSocketBankServer.1 */,
+			);
+			path = CppSocketBankServer;
+			sourceTree = "<group>";
+		};
+		BA1325A116DE380B008BC49B /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				BA13259E16DE37F3008BC49B /* Account.cpp */,
+				BA13259F16DE37F3008BC49B /* Account.h */,
+				BA1325A216DE5111008BC49B /* Bank.cpp */,
+				BA1325A316DE5111008BC49B /* Bank.h */,
+				BA1325A516DE5C6D008BC49B /* Server.cpp */,
+				BA1325A616DE5C6D008BC49B /* Server.h */,
+				BA1325A816DE5EFB008BC49B /* RequstHandler.cpp */,
+				BA1325A916DE5EFB008BC49B /* RequstHandler.h */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BA13259116DE37D7008BC49B /* CppSocketBankServer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA13259B16DE37D7008BC49B /* Build configuration list for PBXNativeTarget "CppSocketBankServer" */;
+			buildPhases = (
+				BA13258E16DE37D7008BC49B /* Sources */,
+				BA13258F16DE37D7008BC49B /* Frameworks */,
+				BA13259016DE37D7008BC49B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CppSocketBankServer;
+			productName = CppSocketBankServer;
+			productReference = BA13259216DE37D7008BC49B /* CppSocketBankServer */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BA13258A16DE37D7008BC49B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = FHNW;
+			};
+			buildConfigurationList = BA13258D16DE37D7008BC49B /* Build configuration list for PBXProject "CppSocketBankServer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BA13258916DE37D7008BC49B;
+			productRefGroup = BA13259316DE37D7008BC49B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BA13259116DE37D7008BC49B /* CppSocketBankServer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BA13258E16DE37D7008BC49B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA13259616DE37D7008BC49B /* main.cpp in Sources */,
+				BA1325A016DE37F3008BC49B /* Account.cpp in Sources */,
+				BA1325A416DE5111008BC49B /* Bank.cpp in Sources */,
+				BA1325A716DE5C6D008BC49B /* Server.cpp in Sources */,
+				BA1325AA16DE5EFB008BC49B /* RequstHandler.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		BA13259916DE37D7008BC49B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/local/boost_1_53_0;
+				LIBRARY_SEARCH_PATHS = /usr/local/boost_1_53_0/stage/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		BA13259A16DE37D7008BC49B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/local/boost_1_53_0;
+				LIBRARY_SEARCH_PATHS = /usr/local/boost_1_53_0/stage/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		BA13259C16DE37D7008BC49B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/boost_1_53_0/stage/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BA13259D16DE37D7008BC49B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/boost_1_53_0/stage/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BA13258D16DE37D7008BC49B /* Build configuration list for PBXProject "CppSocketBankServer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA13259916DE37D7008BC49B /* Debug */,
+				BA13259A16DE37D7008BC49B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA13259B16DE37D7008BC49B /* Build configuration list for PBXNativeTarget "CppSocketBankServer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA13259C16DE37D7008BC49B /* Debug */,
+				BA13259D16DE37D7008BC49B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BA13258A16DE37D7008BC49B /* Project object */;
+}
