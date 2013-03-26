@@ -18,9 +18,12 @@ public class MyBank implements Bank  {
 
 	@Override
 	public String createAccount(String owner) {
-		MyAccount acc = new MyAccount(owner, "0-"+accounts.size()+"-1");
-		String number = acc.getNumber();
-		accounts.put(number, acc);
+		String number;
+		synchronized (accounts) {
+			MyAccount acc = new MyAccount(owner, "0-"+accounts.size()+"-1");
+			number = acc.getNumber();
+			accounts.put(number, acc);
+		}
 		System.out.println("MyBank->createAccount:"+owner+":"+number);
 		return number;
 	}
@@ -29,7 +32,7 @@ public class MyBank implements Bank  {
 	public boolean closeAccount(String number) {
 		if (accounts.containsKey(number)) {
 			MyAccount acc = accounts.get(number);
-			synchronized (this) {
+			synchronized (acc) {
 				if (acc.getBalance() == 0.0) {
 					acc.setInactive();
 					System.out.println("MyBank->closeAccount:"+number);

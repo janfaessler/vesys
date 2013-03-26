@@ -8,7 +8,7 @@ public class MyAccount implements Account {
 	private final String owner;
 	private final String number;
 	private double balance;
-	private boolean active;
+	private volatile boolean active;
 	
 	public MyAccount (String owner, String number) {
 		this.owner = owner;

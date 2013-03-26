@@ -7,6 +7,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import server.util.MyAccount;
+
 import bank.Account;
 import bank.Bank;
 import bank.BankDriver;
@@ -56,10 +58,17 @@ public class LocalBankDriver implements BankDriver {
 
 		@Override
 		public boolean closeAccount(String number) {
-			if (accounts.containsKey(number) && accounts.get(number).getBalance() == 0.0) {
-				accounts.get(number).setInactive();
-				return true;
-			} else return false; // false signals unsuccessful closing
+			if (accounts.containsKey(number)) {
+				MyAccount acc = accounts.get(number);
+				synchronized (acc) {
+					if (acc.getBalance() == 0.0) {
+						acc.setInactive();
+						System.out.println("MyBank->closeAccount:"+number);
+						return true;
+					}
+				}
+			} 
+			return false;
 		}
 
 		@Override
@@ -89,7 +98,7 @@ public class LocalBankDriver implements BankDriver {
 		private final String owner;
 		private final String number;
 		private double balance;
-		private boolean active;
+		private volatile boolean active;
 		
 		public MyAccount (String owner, String number) {
 			this.owner = owner;
@@ -119,17 +128,21 @@ public class LocalBankDriver implements BankDriver {
 
 		@Override
 		public void deposit(double amount) throws InactiveException {
-			if (!active) throw new InactiveException("unable to withdraw from inactive account " + number);
-			if (amount < 0.0) throw new IllegalArgumentException("unable to deposit a amount of " + amount);
-			balance += amount;
+			synchronized (this) {
+				if (!active) throw new InactiveException("unable to withdraw from inactive account " + number);
+				if (amount < 0.0) throw new IllegalArgumentException("unable to deposit a amount of " + amount);
+				balance += amount;
+			}
 		}
 
 		@Override
 		public void withdraw(double amount) throws OverdrawException, InactiveException {
-			if (balance - amount < 0.0) throw new OverdrawException("unable to withdraw " + amount + " from " + number + " (balance=" + balance + ")");
-			if (!active) throw new InactiveException("unable to withdraw from inactive account " + number);
-			if (amount < 0.0) throw new IllegalArgumentException("unable to withdraw a amount of " + amount);
-			balance -= amount;
+			synchronized (this) {
+				if (balance - amount < 0.0) throw new OverdrawException("unable to withdraw " + amount + " from " + number + " (balance=" + balance + ")");
+				if (!active) throw new InactiveException("unable to withdraw from inactive account " + number);
+				if (amount < 0.0) throw new IllegalArgumentException("unable to withdraw a amount of " + amount);
+				balance -= amount;
+			}
 		}
 
 		@Override
