@@ -7,7 +7,7 @@ import bank.OverdrawException;
 public class MyAccount implements Account {
 	private final String owner;
 	private final String number;
-	private double balance;
+	private volatile double balance;
 	private volatile boolean active;
 	
 	public MyAccount (String owner, String number) {

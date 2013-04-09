@@ -1,11 +1,11 @@
 package ch.fhnw.jfmk.bank.server.util;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import bank.Account;
 import bank.Bank;
@@ -13,14 +13,18 @@ import bank.InactiveException;
 import bank.OverdrawException;
 
 public class MyBank implements Bank  {
-	private Map<String, MyAccount> accounts = new HashMap<String, MyAccount>();
+	private Map<String, MyAccount> accounts = new ConcurrentHashMap<String, MyAccount>();
+	private int id = 0;
 	
-
+	private synchronized String getNewId(){
+		return "0-"+id+++"-1"; 
+	}
+	
 	@Override
 	public String createAccount(String owner) {
 		String number;
 		synchronized (accounts) {
-			MyAccount acc = new MyAccount(owner, "0-"+accounts.size()+"-1");
+			MyAccount acc = new MyAccount(owner, getNewId());
 			number = acc.getNumber();
 			accounts.put(number, acc);
 		}
@@ -64,7 +68,16 @@ public class MyBank implements Bank  {
 	@Override
 	public void transfer(Account a, Account b, double amount) throws InactiveException, IllegalArgumentException, IOException, OverdrawException {
 		System.out.println("MyBank->getAccount:"+a.getNumber()+":"+b.getNumber()+":"+String.valueOf(amount));
-		a.withdraw(amount);
-		b.deposit(amount);
+		Account lock1, lock2;
+		synchronized(this) {
+			lock1 = (a.getBalance() > b.getBalance()? a : b);
+			lock2 = (a.getBalance() > b.getBalance()? b : a);
+		}
+		synchronized(lock1) {
+			synchronized(lock2) {
+				a.withdraw(amount);
+				b.deposit(amount);
+			}
+		}
 	}
 }
