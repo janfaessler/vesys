@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Iterator;
 
 import ch.fhnw.jfmk.bank.server.handler.RequestHandler;
+import ch.fhnw.jfmk.bank.server.handler.SocketHandler;
 
 import bank.InactiveException;
 import bank.OverdrawException;
@@ -72,7 +73,7 @@ public class CommandHandler {
 				result = String.valueOf(balance);
 				break;
 			case "disconnect": 
-				rHandler.stop();
+				if (rHandler instanceof SocketHandler) ((SocketHandler) rHandler).stop();
 				break;
 			default: result = "unknown command"; break;
 		}

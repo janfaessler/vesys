@@ -8,5 +8,16 @@
 	<classpathentry kind="lib" path="lib/commons-logging-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/servlet-api.jar"/>
 	<classpathentry kind="lib" path="lib/ws-commons-util-1.0.2.jar"/>
+	<classpathentry kind="lib" path="lib/asm-3.1.jar"/>
+	<classpathentry kind="lib" path="lib/grizzly-framework-2.2.16.jar"/>
+	<classpathentry kind="lib" path="lib/grizzly-http-2.2.16.jar"/>
+	<classpathentry kind="lib" path="lib/grizzly-http-server-2.2.16.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-client-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-core-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-grizzly2-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-json-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-server-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-servlet-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/gson-2.2.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

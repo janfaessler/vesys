@@ -13,9 +13,7 @@ public class XmlRpcHandler implements RequestHandler{
 	public XmlRpcHandler () {
 		cHandler = new CommandHandler(XmlRpcBankServer.getBank(), this);
 	}
-	@Override
-	public void stop() throws IOException { }
-	
+
 	public String handle(String command, String param) throws IOException {
 		System.out.println("Server receive: '"+command+":"+param+"'");
 		String result = cHandler.handleCommand(command, param);

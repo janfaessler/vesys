@@ -1,3 +1,4 @@
+
 package ch.fhnw.jfmk.bank.server.util;
 
 import java.io.IOException;

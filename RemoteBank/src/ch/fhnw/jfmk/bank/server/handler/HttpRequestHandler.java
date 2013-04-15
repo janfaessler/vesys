@@ -41,8 +41,4 @@ public class HttpRequestHandler implements HttpHandler, RequestHandler {
 		os.write(response.getBytes());
 		os.close();
 	}
-	
-	@Override
-	public void stop() throws IOException { }
-
 }
