@@ -92,7 +92,7 @@ public class RestBankDriver implements RemoteDriver {
 			result = res.accept(mime).get(String.class);
 			break;
 		case "disconnect":
-			// stateless
+			bank = null;
 			break;
 		default:
 			result = "unknown command";
