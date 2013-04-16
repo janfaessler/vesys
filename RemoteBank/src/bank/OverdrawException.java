@@ -17,6 +17,8 @@ package bank;
  * @version 3.0
  */
 public class OverdrawException extends Exception {
+	private static final long serialVersionUID = -3319092695992936158L;
+
 	public OverdrawException() {
 		super();
 	}

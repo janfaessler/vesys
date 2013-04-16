@@ -55,6 +55,8 @@ import bank.gui.tests.BankTest;
 
 public class BankGUI extends JFrame {
 
+	private static final long serialVersionUID = -892642222855192844L;
+	
 	private BankDriver driver;
 	private Bank bank;
 
@@ -568,6 +570,8 @@ public class BankGUI extends JFrame {
 	}
 
 	static class ErrorBox extends JDialog {
+		private static final long serialVersionUID = -349889431834368890L;
+
 		public ErrorBox(Frame parent, Exception e){
 			super(parent);
 			setTitle("Exception");
@@ -608,6 +612,8 @@ public class BankGUI extends JFrame {
 
 	static class AboutBox extends JDialog {
 
+		private static final long serialVersionUID = -2403929547554938921L;
+
 		public AboutBox(Frame parent){
 			super(parent);
 			setTitle("About Bank Client");
@@ -636,6 +642,7 @@ public class BankGUI extends JFrame {
 	}
 
 	static class AddAccountDialog extends JDialog {
+		private static final long serialVersionUID = -3074611023025205184L;
 		private JTextField ownerfield   = new JTextField(12);
 		private JTextField balancefield = new JTextField(12);
 
@@ -687,6 +694,7 @@ public class BankGUI extends JFrame {
 	}
 
 	static class TransferDialog extends JDialog {
+		private static final long serialVersionUID = 7831826874781519186L;
 		private JTextField balancefield = new JTextField(12);
 		private JComboBox<String>  accountcombo;
 
