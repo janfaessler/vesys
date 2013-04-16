@@ -9,7 +9,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.FormParam;
 
 import ch.fhnw.jfmk.bank.server.util.CommandHandler;
 import ch.fhnw.jfmk.bank.server.util.MyBank;
@@ -29,7 +29,7 @@ public class RestHandler implements RequestHandler {
 	@POST
 	@Path("/accounts/create")
 	@Produces("application/plain")
-	public String postCreateAccount(@QueryParam("owner") String owner ) throws IOException {
+	public String postCreateAccount(@FormParam("owner") String owner ) throws IOException {
 		return cHandler.handleCommand("createAccount", owner);
 	}
 	
@@ -55,6 +55,14 @@ public class RestHandler implements RequestHandler {
 	}
 	
 	@GET
+	@Path("/accounts/status/")
+	@Produces("application/plain")
+	public String getStatus() throws IOException {
+		return "null";
+	}
+	
+	
+	@GET
 	@Path("/accounts/status/{id}")
 	@Produces("application/plain")
 	public String getStatus(@PathParam("id") String id) throws IOException {
@@ -64,15 +72,15 @@ public class RestHandler implements RequestHandler {
 	@PUT
 	@Path("accounts/deposit/{id}")
 	@Produces("application/plain")
-	public String putDeposit(@PathParam("id") String id, @QueryParam("value") String value) throws IOException {
-		return cHandler.handleCommand("deposit", id+" "+value);
+	public String putDeposit(@PathParam("id") String id, @FormParam("value") String value) throws IOException {
+		return cHandler.handleCommand("deposit", id+";"+value);
 	}
 	
 	@PUT
 	@Path("accounts/withdraw/{id}")
 	@Produces("application/plain")
-	public String putWithdraw(@PathParam("id") String id, @QueryParam("value") String value) throws IOException {
-		return cHandler.handleCommand("withdraw", id+" "+value);
+	public String putWithdraw(@PathParam("id") String id, @FormParam("value") String value) throws IOException {
+		return cHandler.handleCommand("withdraw", id+";"+value);
 	}
 	
 	@GET
