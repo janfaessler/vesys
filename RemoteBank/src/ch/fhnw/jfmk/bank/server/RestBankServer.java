@@ -20,28 +20,20 @@ import ch.fhnw.jfmk.bank.server.util.MyBank;
 public class RestBankServer {
 	
 	private final int port;
-	private MyBank bank;
+	private HttpServer server;
 	
-	public RestBankServer(int p) {
+	public RestBankServer(int p) throws IllegalArgumentException, NullPointerException, IOException {
 		port = p;
-		bank = new MyBank();
+		ResourceConfig rc = new ApplicationAdapter(new BankApplication(new MyBank()));
+		server = GrizzlyServerFactory.createHttpServer("http://localhost:"+port, rc);
 	}
 	
 	public void start() throws IOException {
-		final String baseUri = "http://localhost:9998/";
-
-		ResourceConfig rc = new ApplicationAdapter(new BankApplication(bank));
-
-		System.out.println("Starting grizzly...");
-		HttpServer server = GrizzlyServerFactory.createHttpServer("http://localhost:"+port, rc);
-
-		System.out.println(String.format("Jersey app started with WADL available at "
-								+ "%sapplication.wadl\nTry out %smsg\nHit enter to stop it...",
-								baseUri, baseUri));
-
+		server.start();
+		System.out.print("server started on " + port);
+		System.out.println(" - press ENTER to stop the server");
 		System.in.read();
 		server.stop();
-		System.out.println("server started on " + port);
 	}
 
 	/**
