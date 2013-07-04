@@ -1,10 +1,13 @@
 package ch.fhnw.jfmk.bank.server.util;
 
+import java.io.Serializable;
+
 import bank.Account;
 import bank.InactiveException;
 import bank.OverdrawException;
 
-public class MyAccount implements Account {
+public class MyAccount implements Account, Serializable {
+	
 	private final String owner;
 	private final String number;
 	private volatile double balance;

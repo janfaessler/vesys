@@ -2,6 +2,7 @@
 package ch.fhnw.jfmk.bank.server.util;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
@@ -13,7 +14,7 @@ import bank.Bank;
 import bank.InactiveException;
 import bank.OverdrawException;
 
-public class MyBank implements Bank  {
+public class MyBank implements Bank, Serializable  {
 	private Map<String, MyAccount> accounts = new ConcurrentHashMap<String, MyAccount>();
 	private int id = 0;
 	

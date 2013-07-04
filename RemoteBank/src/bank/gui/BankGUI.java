@@ -44,10 +44,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 import bank.Account;
 import bank.Bank;
 import bank.BankDriver;
+import bank.BankDriver2;
 import bank.InactiveException;
 import bank.OverdrawException;
 import bank.gui.tests.BankTest;
@@ -55,12 +57,10 @@ import bank.gui.tests.BankTest;
 
 public class BankGUI extends JFrame {
 
-	private static final long serialVersionUID = -892642222855192844L;
-	
 	private BankDriver driver;
 	private Bank bank;
 
-	private JComboBox<String> accountcombo = new JComboBox<>();
+	private JComboBox<String> accountcombo = new JComboBox<String>();
 	private Map<String, Account> accounts = new HashMap<String,Account>();
 
 	private JTextField fld_owner   = new JTextField();
@@ -76,15 +76,19 @@ public class BankGUI extends JFrame {
 	private JMenuItem item_exit   = new JMenuItem("Exit");
 	private JMenuItem item_about  = new JMenuItem("About");
 	
-	private List<BankTest> tests = new LinkedList<>();
-	private Map<BankTest, JMenuItem> testMenuItems = new HashMap<>();
+	private List<BankTest> tests = new LinkedList<BankTest>();
+	private Map<BankTest, JMenuItem> testMenuItems = new HashMap<BankTest, JMenuItem>();
 	
 	private boolean ignoreItemChanges = false;
 	
 	private BankTest loadTest(String name) {
 		try {
 			return (BankTest)Class.forName(name).newInstance();
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | ClassCastException e) {
+		} catch (InstantiationException e) {
+			return null;
+		} catch (IllegalAccessException e) {
+			return null;
+		} catch (ClassNotFoundException e) {
 			return null;
 		}
 	}
@@ -93,6 +97,22 @@ public class BankGUI extends JFrame {
 	public BankGUI(BankDriver server) {
 		this.driver = server;
 		this.bank   = server.getBank();
+		
+		if(server instanceof BankDriver2) {
+			try {
+				((BankDriver2)server).registerUpdateHandler(new BankDriver2.UpdateHandler(){
+					@Override
+					public void accountChanged(String number) {
+						SwingUtilities.invokeLater(new Runnable(){
+							@Override
+							public void run() {
+								refreshDialog();
+							}});
+					}});
+			} catch (IOException e1) {
+				throw new RuntimeException(e1);
+			}
+		}
 
 		setTitle("ClientBank Application");
 		setBackground(Color.lightGray);
@@ -105,6 +125,8 @@ public class BankGUI extends JFrame {
 		test = loadTest("bank.gui.tests.FunctionalityTest");
 		if(test != null) { tests.add(test); }
 		test = loadTest("bank.gui.tests.TransferTest");
+		if(test != null) { tests.add(test); }
+		test = loadTest("bank.gui.tests.ConcurrentReads");
 		if(test != null) { tests.add(test); }
 		
 		// define menus
@@ -218,9 +240,11 @@ public class BankGUI extends JFrame {
 		p.add(new JLabel(""), BorderLayout.NORTH);
 		p.add(center,         BorderLayout.CENTER);
 		p.add(east,           BorderLayout.EAST);
-		p.add(btn_refresh,    BorderLayout.SOUTH);
-
-		//getContentPane().add(p);
+		if(! (driver instanceof BankDriver2)) {
+			p.add(btn_refresh,    BorderLayout.SOUTH);
+		} else {
+			p.add(new JLabel(""), BorderLayout.SOUTH);
+		}
 		add(p);
 
 		// Add ActionListeners
@@ -570,8 +594,6 @@ public class BankGUI extends JFrame {
 	}
 
 	static class ErrorBox extends JDialog {
-		private static final long serialVersionUID = -349889431834368890L;
-
 		public ErrorBox(Frame parent, Exception e){
 			super(parent);
 			setTitle("Exception");
@@ -612,8 +634,6 @@ public class BankGUI extends JFrame {
 
 	static class AboutBox extends JDialog {
 
-		private static final long serialVersionUID = -2403929547554938921L;
-
 		public AboutBox(Frame parent){
 			super(parent);
 			setTitle("About Bank Client");
@@ -624,7 +644,7 @@ public class BankGUI extends JFrame {
 			p_text.add(new JLabel("Distributed Systems", SwingConstants.CENTER));
 			p_text.add(new JLabel("Bank Client", SwingConstants.CENTER));
 			p_text.add(new JLabel("", SwingConstants.CENTER));
-			p_text.add(new JLabel("© D. Gruntz, 2001-2013", SwingConstants.CENTER));
+			p_text.add(new JLabel("ï¿½ D. Gruntz, 2001-2013", SwingConstants.CENTER));
 
 			JButton ok = new JButton("OK");
 			ok.addActionListener(
@@ -642,7 +662,6 @@ public class BankGUI extends JFrame {
 	}
 
 	static class AddAccountDialog extends JDialog {
-		private static final long serialVersionUID = -3074611023025205184L;
 		private JTextField ownerfield   = new JTextField(12);
 		private JTextField balancefield = new JTextField(12);
 
@@ -694,7 +713,6 @@ public class BankGUI extends JFrame {
 	}
 
 	static class TransferDialog extends JDialog {
-		private static final long serialVersionUID = 7831826874781519186L;
 		private JTextField balancefield = new JTextField(12);
 		private JComboBox<String>  accountcombo;
 
@@ -707,7 +725,7 @@ public class BankGUI extends JFrame {
 			JButton btn_cancel = new JButton("Cancel");
 			ArrayList<String> accnumbers = new ArrayList<String>(accounts);
 			Collections.sort(accnumbers);
-			accountcombo = new JComboBox<>(accnumbers.toArray(new String[]{}));
+			accountcombo = new JComboBox<String>(accnumbers.toArray(new String[]{}));
 
 			// Create Layout
 			JPanel p=new JPanel(new GridLayout(4,2,10,10));
