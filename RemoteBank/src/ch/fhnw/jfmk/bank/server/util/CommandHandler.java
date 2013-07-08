@@ -6,15 +6,17 @@ import java.util.Iterator;
 import ch.fhnw.jfmk.bank.server.handler.RequestHandler;
 import ch.fhnw.jfmk.bank.server.handler.SocketHandler;
 
+import bank.Account;
+import bank.Bank;
 import bank.InactiveException;
 import bank.OverdrawException;
 
 public class CommandHandler {
 	
-	private MyBank bank;
+	private Bank bank;
 	private RequestHandler rHandler;
 	
-	public CommandHandler(MyBank b, RequestHandler r) {
+	public CommandHandler(Bank b, RequestHandler r) {
 		bank = b;
 		rHandler = r;
 	}
@@ -33,7 +35,7 @@ public class CommandHandler {
 				result = success ? "success" : "fail";
 				break;
 			case "getOwner":
-				MyAccount acc = bank.getAccount(param);
+				Account acc = bank.getAccount(param);
 				if (acc !=  null) result = acc.getOwner();
 				break;
 			case "getAccountNumbers":
@@ -44,7 +46,7 @@ public class CommandHandler {
 				result = strNumbers;
 				break;
 			case "isActive": 
-				MyAccount acc2 = bank.getAccount(param);
+				Account acc2 = bank.getAccount(param);
 				boolean status = (acc2 != null ? acc2.isActive() : false );
 				result = status?"active":(acc2 != null ?"inactive":"null");
 				break;
@@ -68,7 +70,7 @@ public class CommandHandler {
 				catch (IllegalArgumentException e) { result = "IllegalArgumentException"; }
 				break;
 			case "getBalance":
-				MyAccount acc3 = bank.getAccount(param);
+				Account acc3 = bank.getAccount(param);
 				double balance = acc3.getBalance();
 				result = String.valueOf(balance);
 				break;

@@ -23,7 +23,7 @@ public class MyBank implements Bank, Serializable  {
 	}
 	
 	@Override
-	public String createAccount(String owner) {
+	public String createAccount(String owner) throws IOException {
 		String number;
 		synchronized (accounts) {
 			MyAccount acc = new MyAccount(owner, getNewId());
@@ -35,7 +35,7 @@ public class MyBank implements Bank, Serializable  {
 	}
 
 	@Override
-	public boolean closeAccount(String number) {
+	public boolean closeAccount(String number) throws IOException {
 		if (accounts.containsKey(number)) {
 			MyAccount acc = accounts.get(number);
 			synchronized (acc) {
@@ -50,7 +50,7 @@ public class MyBank implements Bank, Serializable  {
 	}
 
 	@Override
-	public Set<String> getAccountNumbers(){
+	public Set<String> getAccountNumbers() throws IOException{
 		System.out.println("MyBank->getAccountNumbers");
 		Set<String> result = new HashSet<String>();
 		Iterator<String> it = accounts.keySet().iterator();
@@ -62,7 +62,7 @@ public class MyBank implements Bank, Serializable  {
 	}
 	
 	@Override
-	public MyAccount getAccount(String number){
+	public MyAccount getAccount(String number) throws IOException{
 		System.out.println("MyBank->getAccount:"+number);
 		return accounts.get(number);
 	}
@@ -74,11 +74,12 @@ public class MyBank implements Bank, Serializable  {
 		synchronized(this) {
 			lock1 = (a.getBalance() > b.getBalance()? a : b);
 			lock2 = (a.getBalance() > b.getBalance()? b : a);
-		}
-		synchronized(lock1) {
-			synchronized(lock2) {
-				a.withdraw(amount);
-				b.deposit(amount);
+		
+			synchronized(lock1) {
+				synchronized(lock2) {
+					a.withdraw(amount);
+					b.deposit(amount);
+				}
 			}
 		}
 	}

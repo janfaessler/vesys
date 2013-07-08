@@ -42,7 +42,7 @@ public class MyAccount implements Account, Serializable {
 	@Override
 	public void deposit(double amount) throws InactiveException {
 		synchronized (this) {
-			if (!active) throw new InactiveException("unable to withdraw from inactive account " + number);
+			if (!this.isActive()) throw new InactiveException("unable to withdraw from inactive account " + number);
 			if (amount < 0.0) throw new IllegalArgumentException("unable to deposit a amount of " + amount);
 			balance += amount;
 		}
@@ -52,7 +52,7 @@ public class MyAccount implements Account, Serializable {
 	public void withdraw(double amount) throws OverdrawException, InactiveException {
 		synchronized (this) {
 			if (balance - amount < 0.0) throw new OverdrawException("unable to withdraw " + amount + " from " + number + " (balance=" + balance + ")");
-			if (!active) throw new InactiveException("unable to withdraw from inactive account " + number);
+			if (!this.isActive()) throw new InactiveException("unable to withdraw from inactive account " + number);
 			if (amount < 0.0) throw new IllegalArgumentException("unable to withdraw a amount of " + amount);
 			balance -= amount;
 		}
