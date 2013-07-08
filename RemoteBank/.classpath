@@ -22,5 +22,8 @@
 	<classpathentry kind="lib" path="lib/activemq-all-5.8.0.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-api-1.6.6.jar"/>
+	<classpathentry kind="lib" path="lib/catalina.jar"/>
+	<classpathentry kind="lib" path="lib/java_websocket.jar"/>
+	<classpathentry kind="lib" path="lib/tomcat-coyote.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
